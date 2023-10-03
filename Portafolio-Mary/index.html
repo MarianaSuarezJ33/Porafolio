@@ -23,15 +23,19 @@
         </div>
         <nav id="nav">
           <ul>
-            <li><a href="#inicio">INICIO</a></li>
-            <li><a href="#sobremi">SOBRE MI</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#curriculum">CURRICULUM</a></li>
-            <li><a href="#portafolio">PORTAFOLIO</a></li>
-            <li><a href="#contacto">CONTACTO</a></li>
+            <li><a href="#inicio" onclick="seleccionar()">INICIO</a></li>
+            <li><a href="#sobremi" onclick="seleccionar()">SOBRE MI</a></li>
+            <li><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
+            <li>
+              <a href="#curriculum" onclick="seleccionar()">CURRICULUM</a>
+            </li>
+            <li>
+              <a href="#portafolio" onclick="seleccionar()">PORTAFOLIO</a>
+            </li>
+            <li><a href="#contacto" onclick="seleccionar()">CONTACTO</a></li>
           </ul>
         </nav>
-        <div class="nav-responsive">
+        <div class="nav-responsive" onclick="mostrarOcultarMenu()">
           <i class="fa-solid fa-bars"></i>
         </div>
       </header>
@@ -205,7 +209,7 @@
               </div>
             </div>
             <div class="skill">
-              <span>Team work</span>
+              <span>Team Work</span>
               <div class="barra-skill">
                 <div class="progreso">
                   <span>100%</span>
@@ -418,5 +422,6 @@
         <a href="#"><i class="fa-brands fa-linkedin"></i></a>
       </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

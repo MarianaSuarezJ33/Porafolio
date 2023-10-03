@@ -285,10 +285,10 @@ text-decoration: none;
     display: block;
     margin-bottom: 10px;
 }
-
+/* Barra blanca de skills */
 .skills .skill .barra-skill{
     height: 8px;
-    width: 80px;
+    width: 380px;
     background-color: #fff;
     position: relative;
     margin-bottom: 30px;
