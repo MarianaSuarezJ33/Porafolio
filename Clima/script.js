@@ -1,75 +1,49 @@
-/*function getWeather() {
-    const cityInput = document.getElementById('cityInput');
-    const cityName = cityInput.value;
+const apiKey = "ed97861cc148dbdea4b59e5313b1b87f"; // Clave API de OpenWeatherMap
 
-    if (cityName === '') {
-        alert('Por favor, ingrese el nombre de la ciudad.');
-        return;
+document
+  .getElementById("weatherForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Evitar que el formulario recargue la página
+
+    const city = document.getElementById("cityInput").value;
+
+    getWeather(city);
+  });
+
+async function getWeather(city) {
+  const apiKey = "ed97861cc148dbdea4b59e5313b1b87f"; //  Clave de OpenWeatherMap
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    const weatherInfoDiv = document.getElementById("weatherInfo");
+
+    if (data.weather && data.weather.length > 0) {
+      const country = data.sys.country;
+      const temperature = data.main.temp;
+
+      // Ejemplo de cambio de imagen basada en la temperatura
+      const imageSrc = temperature > 20
+        ? 'https://clarksvillenow.sagacom.com/files/2020/11/shutterstock_286242953-1200x768.jpg'
+        : 'https://images.unsplash.com/photo-1500740516770-92bd004b996e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCUyMGNsb3VkeXxlbnwwfHwwfHx8MA%3D%3D';
+
+      weatherInfoDiv.style.backgroundImage = `url('images/${city}.jpg')`;
+      weatherInfoDiv.innerHTML = `
+        <h2>Clima en ${city} (${country})</h2>
+        <p><strong>Descripción:</strong> ${data.weather[0].description}</p>
+        <p><strong>Temperatura:</strong> ${temperature}°C</p>
+        <img class="${temperature > 20 ? 'sunny-image' : 'cloudy-image'}" src="${imageSrc}" alt="Weather Image">
+      `;
+    } else {
+      weatherInfoDiv.innerHTML =
+        "<p>No se encontraron datos de clima para esta ciudad.</p>";
     }
-
-    const apiKey = '421a647acf49ea53ecce47f78ac7e8b6'; // Clave API proporcionada
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const weatherInfo = document.getElementById('weatherInfo');
-            const temperature = data.main.temp;
-            const description = data.weather[0].description;
-
-            weatherInfo.innerHTML = `Clima en ${cityName}: ${temperature}°C, ${description}`;
-        })
-        .catch(error => {
-            console.error('Error al obtener datos meteorológicos:', error);
-            alert('Error al obtener datos meteorológicos. Por favor, verifica el nombre de la ciudad.');
-        });
+  } catch (error) {
+    console.log("Hubo un error al obtener el clima:", error);
+    const weatherInfoDiv = document.getElementById("weatherInfo");
+    weatherInfoDiv.innerHTML =
+      "<p>Hubo un error al obtener el clima. Inténtalo de nuevo más tarde.</p>";
+  }
 }
-
-fetch(apiUrl)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error de red: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const weatherInfo = document.getElementById('weatherInfo');
-        const temperature = data.main.temp;
-        const description = data.weather[0].description;
-
-        weatherInfo.innerHTML = `Clima en ${cityName}: ${temperature}°C, ${description}`;
-    })
-    .catch(error => {
-        console.error('Error al obtener datos meteorológicos:', error);
-        alert(`Error al obtener datos meteorológicos. ${error.message}`);
-    });
-    */
-   
-//DATOS SIMULADOS
-    function getWeather() {
-        const cityInput = document.getElementById('cityInput');
-        const cityName = cityInput.value;
-    
-        if (cityName === '') {
-            alert('Por favor, ingrese el nombre de la ciudad.');
-            return;
-        }
-    
-        // Simulación de datos del clima (puedes personalizar estos valores)
-        const simulatedData = {
-            main: {
-                temp: Math.floor(Math.random() * 30) + 1, // Temperatura aleatoria entre 1 y 30 °C
-            },
-            weather: [
-                {
-                    description: 'Cielo despejado', // Descripción aleatoria
-                },
-            ],
-        };
-    
-        const weatherInfo = document.getElementById('weatherInfo');
-        const temperature = simulatedData.main.temp;
-        const description = simulatedData.weather[0].description;
-    
-        weatherInfo.innerHTML = `Clima en ${cityName}: ${temperature}°C, ${description}`;
-    }

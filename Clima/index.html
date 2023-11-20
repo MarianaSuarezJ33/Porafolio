@@ -2,19 +2,27 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aplicación del Clima</title>
+    <title>Consulta de Climas</title>
     <link rel="stylesheet" href="styles.css" />
+    <!-- Enlazar el archivo CSS -->
   </head>
   <body>
-    <div class="container">
-      <div class="weather-container">
-        <h1>Aplicación del Clima</h1>
-        <input type="text" id="cityInput" placeholder="Ingrese la ciudad" />
-        <button onclick="getWeather()">Obtener Clima</button>
-        <div id="weatherInfo"></div>
+    <header class="header">
+      <h1>Estado del clima</h1>
+    </header>
+
+    <main>
+      <form id="weatherForm">
+        <label for="cityInput">Ingrese la ciudad:</label><br /><br />
+        <input type="text" id="cityInput" name="city" required />
+        <button type="submit">Consultar Clima</button>
+      </form>
+
+      <div id="weatherInfo">
+        <!-- Aquí se mostrará la información del clima -->
       </div>
-    </div>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>
